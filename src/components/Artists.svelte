@@ -9,18 +9,20 @@
         "#CDAD9D",
         "#C0C4AC",
     ];
-    let currentCarouselIndex = 0;
+    $: currentCarouselIndex = 0;
 
     function handleRightClick() {
         currentCarouselIndex =
             (currentCarouselIndex + 1) % carouselPhotos.length;
-        console.log(currentCarouselIndex);
     }
 
     function handleLeftClick() {
         currentCarouselIndex =
             (currentCarouselIndex - 1) % carouselPhotos.length;
-        console.log(currentCarouselIndex);
+    }
+
+    function setCarouselIndex(index) {
+        currentCarouselIndex = index;
     }
 </script>
 
@@ -38,15 +40,44 @@
         width: 900px;
         position: absolute;
     }
+
     button {
         position: absolute;
+        margin: 15px;
+        background-color: transparent;
+        border-color: #253906;
+        border-width: medium;
+        padding: 15px;
+        font-size: larger;
+        color: #253906;
+        font-weight: bold;
     }
 
     .button-right {
-        right: 15px;
+        right: 100px;
     }
     .button-left {
-        left: 15px;
+        left: 100px;
+    }
+
+    .slider-index {
+        width: 20px;
+        height: 20px;
+        margin: 10px;
+        border-radius: 50%;
+        background-color: #253906;
+        opacity: 0.5;
+    }
+
+    .slider-index.active {
+        opacity: 1;
+    }
+
+    .slider-index-container {
+        position: absolute;
+        bottom: 100px;
+        margin: auto;
+        display: flex;
     }
 </style>
 
@@ -59,4 +90,27 @@
             class="carousel-image"
             style="background-color:{photo}" />
     {/each}
+    <div class="slider-index-container">
+        <div
+            class={currentCarouselIndex === 1 ? 'slider-index active' : 'slider-index'}
+            on:click={() => setCarouselIndex(1)} />
+        <div
+            class={currentCarouselIndex === 2 ? 'slider-index active' : 'slider-index'}
+            on:click={() => setCarouselIndex(2)} />
+        <div
+            class={currentCarouselIndex === 3 ? 'slider-index active' : 'slider-index'}
+            on:click={() => setCarouselIndex(3)} />
+        <div
+            class={currentCarouselIndex === 4 ? 'slider-index active' : 'slider-index'}
+            on:click={() => setCarouselIndex(4)} />
+        <div
+            class={currentCarouselIndex === 5 ? 'slider-index active' : 'slider-index'}
+            on:click={() => setCarouselIndex(5)} />
+        <div
+            class={currentCarouselIndex === 6 ? 'slider-index active' : 'slider-index'}
+            on:click={() => setCarouselIndex(6)} />
+        <div
+            class={currentCarouselIndex === 7 ? 'slider-index active' : 'slider-index'}
+            on:click={() => setCarouselIndex(7)} />
+    </div>
 </section>
