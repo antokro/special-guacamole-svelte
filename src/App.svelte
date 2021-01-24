@@ -1,6 +1,15 @@
 <script lang="ts">
 	import Stage from "./components/Stage.svelte";
 	import Artists from "./components/Artists.svelte";
+	import { onMount } from "svelte";
+	let y;
+	let artists;
+	let contact;
+
+	onMount(() => {
+		artists = document.querySelector("#artists");
+		contact = document.querySelector("#contact");
+	});
 </script>
 
 <style>
@@ -30,7 +39,7 @@
 		padding: 60px;
 	}
 
-	nav a::after {
+	nav span::after {
 		content: "";
 		position: absolute;
 		width: 100%;
@@ -43,12 +52,12 @@
 		transition: transform 0.4s cubic-bezier(0.86, 0, 0.07, 1);
 	}
 
-	nav a:hover::after {
+	nav span:hover::after {
 		transform: scaleX(1);
 		transform-origin: bottom left;
 	}
 
-	nav a {
+	nav span {
 		margin-bottom: 30px;
 		font-size: larger;
 		color: #e14900;
@@ -57,12 +66,25 @@
 	}
 </style>
 
-<main>
+<svelte:window bind:scrollY={y} />
+<header>
 	<nav>
-		<a href="#">exhibition</a>
-		<a href="#">artists</a>
-		<a href="#">contact</a>
+		<span
+			on:click={() => window.scroll({
+					top: 0,
+					behavior: 'smooth',
+				})}>exhibition</span>
+		<span
+			on:click={() => artists.scrollIntoView({
+					behavior: 'smooth',
+				})}>artists</span>
+		<span
+			on:click={() => contact.scrollIntoView({
+					behavior: 'smooth',
+				})}>contact</span>
 	</nav>
 	<Stage />
+</header>
+<main>
 	<Artists />
 </main>

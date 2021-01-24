@@ -15,7 +15,6 @@
 
 <style>
     section {
-        height: 100vh;
         display: flex;
     }
 
@@ -53,7 +52,7 @@
         background-color: transparent;
         position: absolute;
         z-index: 1;
-        top: 10%;
+        top: 15%;
         bottom: 30%;
         right: 30%;
         left: 30%;
@@ -71,11 +70,6 @@
         align-items: center;
         justify-content: center;
         position: relative;
-    }
-    .stage-right {
-        width: 60vw;
-        height: 100vh;
-        background-color: white;
     }
 
     .stage-left__image {
@@ -132,8 +126,8 @@
 
 <svelte:window bind:scrollY={y} />
 
-<section style="opacity: {1 - Math.max(0, y / 40)}">
-    <div class="title-container">
+<section>
+    <div class="title-container" style="transform: translateY({y * -0.2}px)">
         <h1>{title}</h1>
         <p>
             Lemon tahini dressing dill chocolate hummus guacamole seeds kung pao
@@ -149,5 +143,4 @@
         <p class="stage-left__date">{date}</p>
         <p class="stage-left__location">{location}</p>
     </div>
-    <div class="stage-right" />
 </section>
